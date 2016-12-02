@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>D3 Test</title>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+
+  <style>
+  div.bar {
+    display: inline-block;
+    width: 20px;
+    height: 75px;
+    margin-right: 4px;
+    /*background-color: teal;*/
+  }
+  </style>
+
+</head>
+<body>
+
+  <div>
+    <p>
+      <svg width="250" height="250">
+        <!-- <rect x="25" y="0" width="500" height="50"></rect>
+        <circle cx="250" cy="250" r="25" fill="yellow" stroke="orange" stroke-width="5"/>
+        <ellipse cx="290" cy=290 rx="10" ry="25"/>
+        <line class='line1' x1="300" y1="300" x2="400" y2="400" stroke="black"/>
+        <line x1="0" y1="0" x2="500" y2="50" stroke="black"/>
+        <text x="250" y="50" font-family="sans-serif" font-size="25">Easy Peasy</text> -->
+        <!-- <circle cx="25" cy="25" r="20" fill="rgba(128, 0, 128, 1.0)"/>
+        <circle cx="50" cy="25" r="20" fill="rgba(0, 0, 255, 0.75)"/>
+        <circle cx="75" cy="25" r="20" fill="rgba(0, 255, 0, 0.5)"/>
+        <circle cx="100" cy="25" r="20" fill="rgba(255, 255, 0, 0.25)"/>
+        <circle cx="125" cy="25" r="20" fill="rgba(255, 0, 0, 0.1)"/> -->
+
+        <!-- <circle cx="25" cy="25" r="20"
+        fill="rgba(128, 0, 128, 0.75)"
+        stroke="rgba(0, 255, 0, 0.25)" stroke-width="10"/>
+        <circle cx="75" cy="25" r="20"
+        fill="rgba(0, 255, 0, 0.75)"
+        stroke="rgba(0, 0, 255, 0.25)" stroke-width="10"/>
+        <circle cx="125" cy="25" r="20"
+        fill="rgba(255, 255, 0, 0.75)"
+        stroke="rgba(255, 0, 0, 0.25)" stroke-width="10"/> -->
+
+
+        <!-- <circle cx="25" cy="25" r="20" fill="purple"
+        stroke="green" stroke-width="10"
+        opacity="0.9"/>
+        <circle cx="65" cy="25" r="20" fill="green"
+        stroke="blue" stroke-width="10"
+        opacity="0.5"/>
+        <circle cx="105" cy="25" r="20" fill="yellow"
+        stroke="red" stroke-width="10"
+        opacity="0.1"/> -->
+
+
+        <!-- <circle cx="25" cy="25" r="20"
+        fill="rgba(128, 0, 128, 0.75)"
+        stroke="rgba(0, 255, 0, 0.25)" stroke-width="10"/>
+        <circle cx="65" cy="25" r="20"
+        fill="rgba(128, 0, 128, 0.75)"
+        stroke="rgba(0, 255, 0, 0.25)" stroke-width="10"
+        opacity="0.5"/>
+        <circle cx="105" cy="25" r="20"
+        fill="rgba(128, 0, 128, 0.75)"
+        stroke="rgba(0, 255, 0, 0.25)" stroke-width="10"
+        opacity="0.2"/> -->
+
+
+      </svg>
+    </p>
+  </div>
+  <script type="text/javascript">
+
+  var w = 1500;
+  var h = 50;
+
+  var dataset = [];
+  //creates random data for bargraph
+  for(var i = 0; i < 50; i++){
+    dataset.push( Math.round((i + 2) * Math.random(2)));
+  }
+
+  //creates bargraph
+  // d3.select('body')
+  // .selectAll("p")
+  // .data(dataset)
+  // .enter()
+  // .append("div")
+  // //.text(function(d) {return d; })
+  // .style("background-color","teal")
+  // .style("height", function(d){
+  //   var barHeightFactor = d * 5;
+  //   return barHeightFactor  + 'px';
+  // })
+  // .attr("class", "bar");
+
+  var svg = d3.select('body').append("svg");
+
+  svg.style("width", w)
+  .style("height", h);
+
+  var circles = svg.selectAll("circle")
+  .data(dataset)
+  .enter()
+  .append("circle");
+
+  circles.attr("cx", function(d, i){
+    return (i * 50) + 25;
+  })
+  .attr("cy", h/2)
+  .attr("r", function(d){
+    return d;
+  })
+  .attr("fill", function(d){
+    return "rgba(" + (d*15) + ', ' + (d*13) + ', ' + (Math.round(Math.random() * 100)) + ', ' +  Math.random() + ")";
+  })
+  .attr("stroke", "orange")
+  .attr("stroke-width", function(d) {
+    return d/2;
+  });
+
+
+
+  // .style("height", function(d){
+  //   var barHeightFactor = d * 5;
+  //   return barHeightFactor  + 'px';
+  // })
+  // .attr("class", "bar");
+
+  </script>
+  </body>
+
+
+  </html>
